@@ -45,4 +45,13 @@ public class TransacaoService {
         transacoes.clear();
         log.info("Todas as transações foram removidas com sucesso. Total de transações removidas: {}", qtdTransacoes);
     }
+
+    public List<TransacaoRequestDTO> buscarTransacoesPorTempo(Integer tempoDeBusca){
+        log.info("Buscando transações nos últimos {} segundos", tempoDeBusca);
+        return transacoes.stream()
+                .filter(transacao ->
+                        transacao.dataHora().isAfter(OffsetDateTime.now().minusSeconds(tempoDeBusca))
+                )
+                .toList();
+    }
 }
