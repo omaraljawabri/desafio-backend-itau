@@ -38,4 +38,11 @@ public class TransacaoService {
         transacoes.add(transacaoRequestDTO);
         log.info("Transação salva com sucesso!");
     }
+
+    public void removerTransacoes(){
+        log.info("Iniciando processo de remoção das transações");
+        int qtdTransacoes = transacoes.size();
+        transacoes.clear();
+        log.info("Todas as transações foram removidas com sucesso. Total de transações removidas: {}", qtdTransacoes);
+    }
 }
