@@ -37,4 +37,16 @@ class EstatisticaControllerTest {
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().count()).isEqualTo(2L);
     }
+
+    @Test
+    @DisplayName("buscarEstatisticasDasTransacoes deve retornar EstatisticaResponseDTO com valores zerados e http status 200 quando não houverem transações")
+    void buscarEstatisticasDasTransacoes_RetornaEstatisticaResponseDTOComValoresZeradosEStatus200_QuandoNaoHouveremTransacoes(){
+        when(estatisticaService.buscarEstatisticasDasTransacoes(ArgumentMatchers.anyInt()))
+                .thenReturn(new EstatisticaResponseDTO(0L, 0D, 0D, 0D, 0D));
+        ResponseEntity<EstatisticaResponseDTO> responseEntity = estatisticaController.buscarEstatisticasDasTransacoes(10);
+        assertThat(responseEntity).isNotNull();
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isNotNull();
+        assertThat(responseEntity.getBody().count()).isZero();
+    }
 }
