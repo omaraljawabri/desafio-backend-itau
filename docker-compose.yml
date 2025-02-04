@@ -1,0 +1,6 @@
+services:
+  desafio-backend-itau:
+    container_name: desafio-backend-itau
+    image: omarjawabri/desafio-backend-itau
+    ports:
+      - "8080:8080"
